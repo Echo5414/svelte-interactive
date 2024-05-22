@@ -12,7 +12,9 @@
 		content: string;
 	}
 
-  let items = $contentStore;
+  //let items = $contentStore;
+  $: items = $contentStore;
+
   let pendingDelete: ContentItem | null = null;
 
 	function addItem(type: ContentType): void {
@@ -70,8 +72,8 @@
 function handleDndUpdate(event): void {
   const { detail } = event;
   items = detail.items;
-  contentItems = [...items]; // Update contentItems
   contentStore.set(items);
+  contentItems = [...items]; // Update contentItems
 
   // Update contentItems array
   const draggedItem = contentItems[detail.oldIndex];

@@ -42,8 +42,11 @@ function createContentStore() {
             return updated;
         }),
         set: (value: ContentItem[]) => {
-          update(_ => value);
-        }
+            update(_ => {
+              updateLocalStorage(value);  // Ensure local storage is updated
+              return value;
+            });
+          }
           
     };
 }
